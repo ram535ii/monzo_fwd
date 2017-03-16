@@ -25,8 +25,6 @@ type Container struct {
 }
 
 func main() {
-  fmt.Fprintln(os.Stderr, "Hi")
-
   apex.HandleFunc(func(event json.RawMessage, ctx *apex.Context) (interface{}, error) {
     var container Container
 
@@ -37,7 +35,7 @@ func main() {
     telegramBot := os.Getenv("telegram_bot")
     telegramRecipient := os.Getenv("telegram_recipient")
 
-    var jsonStr = []byte(fmt.Sprintf(`{"chat_id": "%v", "text": "%v"}`, telegramRecipient, container.Transaction.Amount))
+    var jsonStr = []byte(fmt.Sprintf(`{"chat_id": "%v", "text": "%v - %v"}`, telegramRecipient, container.Transaction.Amount, container.Transaction.Description))
 
     url := fmt.Sprintf("https://api.telegram.org/bot%v/sendMessage", telegramBot)
     req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
