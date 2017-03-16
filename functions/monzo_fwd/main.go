@@ -7,7 +7,7 @@ import (
   "os"
   "bytes"
   "net/http"
-  "io/ioutil"
+  // "io/ioutil"
 
   "github.com/apex/go-apex"
 )
@@ -26,6 +26,8 @@ type Container struct {
 
 func main() {
   apex.HandleFunc(func(event json.RawMessage, ctx *apex.Context) (interface{}, error) {
+    fmt.Fprintf(os.Stderr, "EVENT!\n\n%s\n\n", event)
+
     var container Container
 
     if err := json.Unmarshal(event, &container); err != nil {
@@ -48,9 +50,9 @@ func main() {
     }
     defer resp.Body.Close()
 
-    fmt.Println("response Status:", resp.Status)
-    body, _ := ioutil.ReadAll(resp.Body)
-    fmt.Println("response Body:", string(body))
+    fmt.Fprintf(os.Stderr, "RESPONSE: %s", resp.Status)
+    // body, _ := ioutil.ReadAll(resp.Body)
+    // fmt.Println("response Body:", string(body))
 
     return container, nil
   })
