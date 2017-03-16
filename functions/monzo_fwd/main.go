@@ -3,10 +3,10 @@ package main
 import (
   "encoding/json"
   "fmt"
-  // "errors"
   "os"
   "bytes"
   "net/http"
+
   // "io/ioutil"
 
   "github.com/apex/go-apex"
@@ -19,9 +19,13 @@ type Transaction struct {
   Description string `json:"description"`
   Currency    string `json:"currency"`
 }
-type Container struct {
+type TransactionEvent struct {
   Type        string `json:"type"`
   Transaction        `json:"data"`
+}
+
+type Container struct {
+  Body        string `json:"body"`
 }
 
 func main() {
@@ -29,15 +33,20 @@ func main() {
     fmt.Fprintf(os.Stderr, "EVENT!\n\n%s\n\n", event)
 
     var container Container
+    var transactionEvent TransactionEvent
 
     if err := json.Unmarshal(event, &container); err != nil {
+      return nil, err
+    }
+
+    if err := json.Unmarshal([]byte(container.Body), &transactionEvent); err != nil {
       return nil, err
     }
 
     telegramBot := os.Getenv("telegram_bot")
     telegramRecipient := os.Getenv("telegram_recipient")
 
-    var jsonStr = []byte(fmt.Sprintf(`{"chat_id": "%v", "text": "%v - %v"}`, telegramRecipient, container.Transaction.Amount, container.Transaction.Description))
+    var jsonStr = []byte(fmt.Sprintf(`{"chat_id": "%v", "text": "%v - %v"}`, telegramRecipient, transactionEvent.Transaction.Amount, transactionEvent.Transaction.Description))
 
     url := fmt.Sprintf("https://api.telegram.org/bot%v/sendMessage", telegramBot)
     req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))

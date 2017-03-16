@@ -1,35 +1,36 @@
 {
   "event":
   {
-      "type": "transaction.created",
-      "data": {
-          "account_id": "acc_00008gju41AHyfLUzBUk8A",
-          "amount": -350,
-          "created": "2015-09-04T14:28:40Z",
-          "currency": "GBP",
-          "description": "Ozone Coffee Roasters",
-          "id": "tx_00008zjky19HyFLAzlUk7t",
-          "category": "eating_out",
-          "is_load": false,
-          "settled": true,
-          "merchant": {
-              "address": {
-                  "address": "98 Southgate Road",
-                  "city": "London",
-                  "country": "GB",
-                  "latitude": 51.54151,
-                  "longitude": -0.08482400000002599,
-                  "postcode": "N1 3JD",
-                  "region": "Greater London"
-              },
-              "created": "2015-08-22T12:20:18Z",
-              "group_id": "grp_00008zIcpbBOaAr7TTP3sv",
-              "id": "merch_00008zIcpbAKe8shBxXUtl",
-              "logo": "https://pbs.twimg.com/profile_images/527043602623389696/68_SgUWJ.jpeg",
-              "emoji": "🍞",
-              "name": "The De Beauvoir Deli Co.",
-              "category": "eating_out"
-          }
-      }
+    "resource": "/path",
+    "path": "/path",
+    "httpMethod": "POST",
+    "queryStringParameters": null,
+    "pathParameters": null,
+    "stageVariables": null,
+    "requestContext": {
+        "accountId": "123",
+        "resourceId": "zww35d",
+        "stage": "prod",
+        "requestId": "123",
+        "identity": {
+            "cognitoIdentityPoolId": null,
+            "accountId": null,
+            "cognitoIdentityId": null,
+            "caller": null,
+            "apiKey": null,
+            "sourceIp": "123",
+            "accessKey": null,
+            "cognitoAuthenticationType": null,
+            "cognitoAuthenticationProvider": null,
+            "userArn": null,
+            "userAgent": "Go-http-client/2.0",
+            "user": null
+        },
+        "resourcePath": "/path",
+        "httpMethod": "POST",
+        "apiId": "id"
+    },
+    "body": "{\"type\":\"transaction.created\",\"data\":{\"id\":\"tx_123\",\"created\":\"2017-03-16T17:28:23.017Z\",\"description\":\"Transfer to Daryl\",\"amount\":350,\"currency\":\"GBP\",\"merchant\":null,\"notes\":\"More lambda \",\"metadata\":{\"notes\":\"More lambda \",\"p2p_transfer_id\":\"p2p_123\"},\"account_balance\":123,\"attachments\":null,\"category\":\"mondo\",\"is_load\":true,\"settled\":\"2017-03-16T17:54:23.017Z\",\"local_amount\":-1,\"local_currency\":\"GBP\",\"updated\":\"2017-03-16T17:59:23.36Z\",\"account_id\":\"acc_123\",\"counterparty\":{\"number\":\"+44123\",\"user_id\":\"user_123\"},\"scheme\":\"gps_mastercard\",\"dedupe_id\":\"123\",\"originator\":true,\"include_in_spending\":true}}",
+    "isBase64Encoded": false
   }
 }
