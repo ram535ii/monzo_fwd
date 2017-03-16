@@ -38,3 +38,5 @@ $ echo '{
       }
 }' | telegram_bot=BOT_ID telegram_recipient=RECIPIENT_ID go run main.go
 ```
+
+or use something awesome like [direnv](https://direnv.net/) to manage your env variables.
