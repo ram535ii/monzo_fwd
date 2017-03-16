@@ -1,0 +1,8 @@
+{
+  "name": "monzo_fwd",
+  "description": "Forward Monzo transactions to Telegram",
+  "memory": 128,
+  "timeout": 5,
+  "role": "arn:aws:iam::124107426346:role/monzo_fwd_lambda_function",
+  "environment": {}
+}
